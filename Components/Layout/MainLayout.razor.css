@@ -1,0 +1,32 @@
+
+/* Overall page layout */
+.page {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Main content below the top navigation */
+.main-content {
+  width: 100%;
+  min-height: calc(100vh - 70px);
+  padding: 0;
+  margin: 0;
+}
+
+/* General content container */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* Responsive spacing for mobile devices */
+@media (max-width: 768px) {
+  .main-content {
+    min-height: calc(100vh - 60px);
+  }
+
+  .content-container {
+    padding: 24px 16px;
+  }
+}

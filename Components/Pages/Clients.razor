@@ -1,0 +1,304 @@
+﻿
+@page "/clients"
+@rendermode InteractiveServer
+@using H2SoftwareWebsite.Components.Layout
+@inject IJSRuntime JS
+@using Microsoft.JSInterop;
+
+<PageTitle>Clients | H2 Software</PageTitle>
+
+<div class="clients-page">
+
+    <!-- HERO SECTION -->
+    <!-- <section class="clients-hero">
+        <div class="clients-overlay">
+            <div class="container">
+                <span class="clients-eyebrow">OUR CLIENTS</span>
+
+                <h1>Solutions That Make a Difference</h1>
+
+                <p>
+                    We help businesses streamline their operations, improve
+                    productivity, and achieve more through reliable software
+                    solutions and IT services.
+                </p>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- INTRODUCTION SECTION -->
+    <section class="clients-intro">
+        <div class="clients-overlay">
+            <div class="clients-container">
+
+                <span class="section-label">WHAT WE DO</span>
+
+                <h2>Technology That Works for Your Business</h2>
+
+                <p>
+                    At H2 Software, we deliver practical technology solutions that address 
+                    real-world business challenges. From workforce management and IT service 
+                    management to technical staffing, we help organizations streamline operations, 
+                    improve efficiency, and achieve their business goals.
+                </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CLIENT SOLUTIONS CAROUSEL -->
+    <section class="client-solutions">
+        <div class="clients-container">
+
+            <!-- Carousel heading -->
+            <div class="solutions-heading">
+                <div>
+                    <h2>OUR CLIENTS</h2>
+                </div>
+
+                <p>
+                    ​H2 is a trusted IT partner of several top corporations in the Philippines
+                </p>
+            </div>
+
+            <!-- Carousel -->
+            <div class="solutions-carousel">
+
+                <!-- Visible slide area -->
+                <div class="carousel-viewport">
+                    <button type="button"
+                            class="carousel-arrow carousel-arrow-prev"
+                            aria-label="Previous slides"
+                            disabled="@(_currentSlide == 0)"
+                            @onclick="PreviousSlide">
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="carousel-window">
+                        <div class="carousel-track"
+                             style="@($"transform: translateX(-{_currentSlide * (100.0 / _visibleSlides)}%);")">
+
+                            @foreach (var slide in _slides)
+                            {
+                                <div class="carousel-slide"
+                                      style="@($"flex: 0 0 {100.0 / _visibleSlides}%;")"
+                                      @key="slide.Title">
+
+                                    <article class="client-card">
+
+                                        <!-- Icon -->                                    
+                                        <div class="client-icon">
+                                            <i class="@slide.Icon" aria-hidden="true"></i>
+                                        </div>
+
+                                        <!-- Title -->
+                                        <h3>@slide.Title</h3>
+
+                                        <div class="client-description">
+                                            <p>@slide.ListHeading</p>
+
+                                            @if (slide.ListItems.Count > 0)
+                                            {
+                                                <ul>
+                                                    @foreach (var item in slide.ListItems)
+                                                    {
+                                                        <li @key="item">@item</li>
+                                                    }
+                                                </ul>
+                                            }
+                                        </div>
+
+                                    </article>
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <button type="button"
+                            class="carousel-arrow carousel-arrow-next"
+                            aria-label="Next slides"
+                            disabled="@(_currentSlide >= MaxSlideIndex)"
+                            @onclick="NextSlide">
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <!-- Carousel navigation -->
+                <div class="carousel-controls">
+                    <div class="carousel-indicators">
+                        @for (int i = 0; i <= MaxSlideIndex; i++)
+                        {
+                            var index = i;
+
+                            <button type="button"
+                                    class="@( _currentSlide == index
+                                        ? "carousel-dot active"
+                                        : "carousel-dot")"
+                                    aria-label="@($"Show slides {index + 1} to {Math.Min(index + _visibleSlides, _slides.Count)}")"
+                                    aria-current="@(_currentSlide == index ? "true" : "false")"
+                                    @onclick="() => GoToSlide(index)">
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                <div class="carousel-counter">
+                    Showing @(_currentSlide + 1)–@(Math.Min(_currentSlide + _visibleSlides, _slides.Count))
+                    of @_slides.Count solutions
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+</div>
+
+<section id="contact" class="contact-section">
+  <ContactUs />
+</section>
+
+<!-- FOOTER -->
+<Footer />
+
+@code {
+    private int _visibleSlides = 3;
+
+    private int _currentSlide = 0;
+
+    private int MaxSlideIndex =>
+        Math.Max(0, _slides.Count - _visibleSlides);
+
+    private readonly List<SolutionSlide> _slides = new()
+    {
+        // SLIDE 1
+        new SolutionSlide
+        {
+            Icon = "bi bi-bank",
+            Title = "Payroll Software As A Service",
+            ListHeading = "Over 60 clients including:",
+            ListItems = new List<string>
+            {
+                "One of the Top 5 banks in the Philippines",
+                "A leading national newspaper"
+            }
+        },
+
+        // SLIDE 2
+        new SolutionSlide
+        {
+            Icon = "bi bi-headset",
+            Title = "Service Desk and End-user Computing Support Service",
+            ListHeading = "4 clients including:",
+            ListItems = new List<string>
+            {
+                "Two Top 12 Banks in the Philippines",
+                "A foreign bank",
+                "A Remittance Company"
+            }
+        },
+
+        // SLIDE 3
+        new SolutionSlide
+        {
+            Icon = "bi bi-person",
+            Title = "IT Staff Augment Service",
+            ListHeading = "Over 10 clients including:",
+            ListItems = new List<string>
+            {
+                "Four of the Top 20 Banks in the Philippines",
+                "The biggest motorcycle dealer",
+                "​An American industrial manufacturer"
+            }
+        },
+
+        // SLIDE 4
+        new SolutionSlide
+        {
+            Icon = "bi bi-arrow-repeat",
+            Title = "Software Development and Testing Service",
+            ListHeading = "Over 10 clients including:",
+            ListItems = new List<string>
+            {
+                "Three Top 12 Banks in the Philippines Banks",
+                "A foreign bank subsidiary",
+                "​A remittance company",
+                "A logistics company",
+                "A US Software Company"
+            }
+        },
+
+        // SLIDE 5
+        new SolutionSlide
+        {
+            Icon = "bi bi-pc-display",
+            Title = "Robotic Process Automation Service",
+            ListHeading = "",
+            ListItems = new List<string>
+            {
+                "One Top 20 Banks in the Philippines"
+            }
+        },
+
+        // SLIDE 6
+        new SolutionSlide
+        {
+            Icon = "bi bi-briefcase",
+            Title = "Sapphire Sales and Implementation Service",
+            ListHeading = "12 clients including:",
+            ListItems = new List<string>
+            {
+                "Two Top 20 Banks in the Philippines and one foreign bank subsidiary​",
+                "The biggest leasing company in the Philippines",
+                "A Top 5 Real Estate Company",
+                "A power transmission company",
+                "The biggest canned tuna manufacturer",
+                "The second biggest burger chain"
+            }
+        }
+    };
+
+    private void NextSlide()
+    {
+        if (_currentSlide < MaxSlideIndex)
+        {
+            _currentSlide++;
+        }
+    }
+
+    private void PreviousSlide()
+    {
+        if (_currentSlide > 0)
+        {
+            _currentSlide--;
+        }
+    }
+
+    private void GoToSlide(int index)
+    {
+        if (index >= 0 && index <= MaxSlideIndex)
+        {
+            _currentSlide = index;
+        }
+    }
+
+    // Model for each carousel slide.    
+    private sealed class SolutionSlide
+    {
+        public string Icon { get; set; } = "";
+        public string Title { get; set; } = "";
+        public string ListHeading { get; set; } = "";
+        public List<string> ListItems { get; set; } = new();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+      if (firstRender)
+      {
+        _visibleSlides = await JS.InvokeAsync<int>(
+            "clientsCarousel.getVisibleSlides");
+
+        StateHasChanged();
+      }
+    }
+}

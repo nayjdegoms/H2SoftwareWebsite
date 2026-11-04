@@ -1,0 +1,281 @@
+﻿
+@page "/careers"
+@rendermode InteractiveServer
+@using H2SoftwareWebsite.Components.Layout
+@inject IJSRuntime JS
+@using Microsoft.JSInterop;
+
+<PageTitle>Careers | H2 Software</PageTitle>
+
+<div class="careers-page">
+    <!-- CAREER OPPORTUNITIES CAROUSEL -->
+    <section class="career-opportunities">
+        <div class="careers-container">
+
+            <!-- Carousel heading -->
+            <div class="career-heading">
+                <div>
+                    <h2><span>H2</span> IS HIRING!</h2>
+                </div>
+            </div>
+
+            <!-- Carousel -->
+            <div class="careers-carousel">
+
+                <!-- Visible slide area -->
+                <div class="carousel-viewport">
+                    <button type="button"
+                            class="carousel-arrow carousel-arrow-prev"
+                            aria-label="Previous slides"
+                            disabled="@(_currentSlide == 0)"
+                            @onclick="PreviousSlide">
+                        <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="carousel-window">
+                        <div class="carousel-track"
+                             style="@($"transform: translateX(-{_currentSlide * (100.0 / _visibleSlides)}%);")">
+
+                            @foreach (var slide in _slides)
+                            {
+                                <div class="carousel-slide"
+                                      style="@($"flex: 0 0 {100.0 / _visibleSlides}%;")"
+                                      @key="slide.Title">
+
+                                    <article class="career-card">
+
+                                        <!-- Title -->
+                                        <h3>@slide.Title</h3>
+
+                                        <div class="career-description">
+                                            <p>@slide.ListHeading</p>
+
+                                            @if (slide.ListItems.Count > 0)
+                                            {
+                                                <ul>
+                                                    @foreach (var item in slide.ListItems)
+                                                    {
+                                                        <li @key="item">@item</li>
+                                                    }
+                                                </ul>
+                                            }
+                                        </div>
+                                    </article>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <button type="button"
+                            class="carousel-arrow carousel-arrow-next"
+                            aria-label="Next slides"
+                            disabled="@(_currentSlide >= MaxSlideIndex)"
+                            @onclick="NextSlide">
+                        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+
+                <!-- Carousel navigation -->
+                <div class="carousel-controls">
+                    <div class="carousel-indicators">
+                        @for (int i = 0; i <= MaxSlideIndex; i++)
+                        {
+                            var index = i;
+
+                            <button type="button"
+                                    class="@( _currentSlide == index
+                                        ? "carousel-dot active"
+                                        : "carousel-dot")"
+                                    aria-label="@($"Show slides {index + 1} to {Math.Min(index + _visibleSlides, _slides.Count)}")"
+                                    aria-current="@(_currentSlide == index ? "true" : "false")"
+                                    @onclick="() => GoToSlide(index)">
+                            </button>
+                        }
+                    </div>
+                </div>
+
+                <div class="carousel-counter">
+                      Showing @(_currentSlide + 1)–@(Math.Min(_currentSlide + _visibleSlides, _slides.Count))
+                      of @_slides.Count solutions
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CAREERS / CALL TO ACTION -->
+    <section id="careers" class="careers-section">
+        <div class="container">
+            <div class="careers-panel">
+                <div>
+                    <span class="section-label">GROW WITH US</span>
+                    <h2>Build Your Career in Technology</h2>
+                    <p>
+                      Explore opportunities to grow your skills and
+                      contribute to technology solutions.
+                    </p>
+                </div>
+
+                <a href="mailto:HR@h2software.net"
+                   class="btn btn-primary-custom">
+                  Apply Now!
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<section id="contact" class="contact-section">
+  <ContactUs />
+</section>
+
+<!-- FOOTER -->
+<Footer />
+
+@code {
+    private int _visibleSlides = 3;
+
+    private int _currentSlide = 0;
+
+    private int MaxSlideIndex =>
+        Math.Max(0, _slides.Count - _visibleSlides);
+
+    private readonly List<SolutionSlide> _slides = new()
+    {
+        // SLIDE 1
+        new SolutionSlide
+        {
+            Title = "Software Developers",
+            ListItems = new List<string>
+            {
+                "We are hiring C#, PHP and Java developers for both internal and client projects.",
+                "Our developers build front-end and back-end modules.",
+                "We use development frameworks to build software, Visual Studio for C#, Laravel for PHP and Spring for Java.",
+                "Experience will be an advantage but we hire new graduates and provide training.",
+            }
+        },
+
+        // SLIDE 2
+        new SolutionSlide
+        {
+            Title = "Software Testers",
+            ListItems = new List<string>
+            {
+                "We are hiring both manual and automation testers for both internal and client projects.",
+                "Our manual testers prepare test scripts and conduct test execution.",
+                "Our automation testers build automation test scripts using either the Robot Framework or a Proprietary tool, Rapise.",
+                "Experience will be an advantage but we hire new graduates and provide training.",
+            }
+        },
+
+        // SLIDE 3
+        new SolutionSlide
+        {
+            Title = "System Analysts",
+            ListItems = new List<string>
+            {
+                "We are hiring Systems Analyst for both internal and client projects.",
+                "Our Systems Analysts prepare Software Functional and Technical Design",
+                "They supervise our software developers for the duration of the project.",
+                "Minimum of 3 years of work experience in software development is a requirement but we take exception for some candidates.",
+            }
+        },
+
+        // SLIDE 4
+        new SolutionSlide
+        {
+            Title = "Business Analysts",
+            ListItems = new List<string>
+            {
+                "We are hiring Business Analyst for client projects.",
+                "Our Business Analyst prepares Process ImprovementDocument and Functional Design for either software development or workflow automation projects.",
+                "​Minimum of 2 years of work experience in software development or Business Analysis is a requirement but we take exception for some candidates."
+            }
+        },
+
+        // SLIDE 5
+        new SolutionSlide
+        {
+            Title = "IT Service Desk Specialist",
+            ListItems = new List<string>
+            {
+                "We are hiring IT service desk specialist to join our service desk team.",
+                "As an IT Service Desk Specialist, you shall be the primary point of contact for all IT Incidents and Requests.",
+                "Your role includes provision of initial support using prepared scripts.",
+                "Creation of ticket for request.",
+                "​Assignment of request to a resolver.",
+                "No experience is needed."
+            }
+        },
+
+        // SLIDE 6
+        new SolutionSlide
+        {
+            Title = "IT Service Desk Team Lead",
+            ListItems = new List<string>
+            {
+                "We are hiring IT service desk team leaders for our Service Desk Team.",
+                "As an IT Service Desk Team Leader, your role shall include supervision of a service desk team.",
+                "Update of support scripts and participate in process improvement initiatives.",
+                "Minimum of 2 year service desk experience and 1 year supervisory experience is required."
+            }
+        },
+
+        // SLIDE 7
+        new SolutionSlide
+        {
+            Title = "Technical Support Specialist",
+            ListItems = new List<string>
+            {
+                "We are hiring technical support staff to join our End-User Support Team.",
+                "As a technical support specialist, you shall provide hardware and software support for incidents and requests concerning the personal computer.",
+                "No experience is needed."
+            }
+        }
+    };
+
+    private void NextSlide()
+    {
+        if (_currentSlide < MaxSlideIndex)
+        {
+            _currentSlide++;
+        }
+    }
+
+    private void PreviousSlide()
+    {
+        if (_currentSlide > 0)
+        {
+            _currentSlide--;
+        }
+    }
+
+    private void GoToSlide(int index)
+    {
+        if (index >= 0 && index <= MaxSlideIndex)
+        {
+            _currentSlide = index;
+        }
+    }
+
+    // Model for each carousel slide.    
+    private sealed class SolutionSlide
+    {
+        public string Icon { get; set; } = "";
+        public string Title { get; set; } = "";
+        public string ListHeading { get; set; } = "";
+        public List<string> ListItems { get; set; } = new();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+      if (firstRender)
+      {
+        _visibleSlides = await JS.InvokeAsync<int>(
+            "clientsCarousel.getVisibleSlides");
+
+        StateHasChanged();
+      }
+    }
+}

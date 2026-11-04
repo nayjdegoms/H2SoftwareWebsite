@@ -1,7 +1,171 @@
 ﻿@page "/"
+@using H2SoftwareWebsite.Components.Layout
 
-<PageTitle>Home</PageTitle>
+<PageTitle>H2 Software | IT Services and Software Solutions</PageTitle>
 
-<h1>Hello, world!</h1>
+<!-- HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-overlay"></div>
 
-Welcome to your new app.
+  <div class="container hero-content">
+    <h1>
+      A Trusted Filipino IT Service Provider
+    </h1>
+
+    <p>
+      Empowering Filipino businesses with reliable software,
+      IT services, and technology professionals.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#services" class="btn btn-primary-custom">
+        Explore Our Services
+      </a>
+
+      <a href="#about" class="btn btn-outline-custom">
+        Learn About Us
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="container">
+      <span>SOFTWARE</span>
+      <span>IT SERVICES</span>
+      <span>BUSINESS SOLUTIONS</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="container">
+    <div class="section-heading">
+      <span class="section-label">WHAT WE DO</span>
+      <h2>Our Services</h2>
+      <p>
+        Practical technology solutions designed around
+        your business needs.
+      </p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <article class="service-card">
+          <h3>Payroll Software as a Service</h3>
+          <p>
+            An all-in-one cloud payroll software which help companies achieve a 
+            seamless payroll processing while complying the requirements of  
+            BIR, DOLE, SSS, Philhealth and Pagibig.
+          </p>
+          <a href="https://www.h2payroll.com/">
+            Learn More <i class="bi bi-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <article class="service-card">
+          <h3>Service Desk and Technical Support Service</h3>
+          <p>
+            We help our clients’ improve its internal IT customer satisfaction rating 
+            thru our re-engineered Service Desk and End-user Computing Support service. 
+            Our service is anchored on our tools, our experience and our people.
+          </p>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <article class="service-card">
+          <h3>IT Staff Augment Service</h3>
+          <p>
+            We assign well-trained software developers, systems analysts, business analysts, 
+            business intelligence specialists and project managers to support your software 
+            projects.
+          </p>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <article class="service-card">
+          <h3>Software Testing Service</h3>
+          <p>
+            We conduct end-to-end Software Testing Service, from framework development to post
+            implementation regression testing. We do both manual and automated software testing and,
+            we support both agile, waterfall or hybrid application development methodology.
+          </p>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <article class="service-card">
+          <h3>Robotic Process Automation Service</h3>
+          <p>
+            We automate your business process using Robotic Process Automation (RPA) Software. 
+            We start our engagement with process discovery, followed by detailed requirements gathering 
+            and finally, development and delivery.
+          </p>
+        </article>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <article class="service-card">
+          <h3>Software Development Service</h3>
+          <p>
+            We design and build mobile and browser software. Our service includes user interface design,
+            testing and user training.
+          </p>
+        </article>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="about-visual">
+          <img src="images/LOGO2-1.png"
+               alt="H2 Software logo"
+               class="about-logo" />
+
+          <span class="about-caption">
+            TECHNOLOGY. PEOPLE. SOLUTIONS.
+          </span>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <span class="section-label">ABOUT H2 SOFTWARE</span>
+        <h2>Technology Backed by People and Experience</h2>
+
+        <p>
+          We aim to give Filipino companies access to
+          world-class, Philippine-made IT services and
+          software solutions.
+        </p>
+
+        <p>
+          Our approach combines technology, professional
+          expertise, and an understanding of business needs.
+        </p>
+
+        <a href="/about-us"
+           class="btn btn-primary-custom">
+          More About Us
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <ContactUs />
+</section>
+
+<!-- FOOTER -->
+<Footer />

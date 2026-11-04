@@ -1,0 +1,478 @@
+/* =========================================
+   GLOBAL PAGE STYLES
+   ========================================= */
+
+/*.careers-page {
+  color: #343434;
+  background: #ffffff;
+  font-family: 'DM Sans',Arial,sans-serif;
+  overflow: hidden;
+}
+
+.careers-container {
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+  .careers-page *,
+  .careers-page *::before,
+  .careers-page *::after {
+    box-sizing: border-box;
+  }
+
+.career-opportunities {
+  padding: 65px 0 90px;
+  background: #f7f7f7;
+}
+
+.career-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+  .career-heading h2 {
+    margin-bottom: 0;
+  }
+
+    .career-heading h2 span {
+      color: #a71920;
+    }*/
+
+/* =========================================
+   CAROUSEL LAYOUT
+   THREE SLIDES VISIBLE AT A TIME
+   ========================================= */
+
+/*.careers-carousel {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.carousel-viewport {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.carousel-window {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 33.333333%;
+  min-width: 0;
+  padding: 0 12px;
+  box-sizing: border-box;
+}*/
+
+  /* =========================================
+   CAREER CARDS
+   ========================================= */
+
+  /*.carousel-slide .career-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    min-height: 390px;
+    height: 100%;
+    padding: 26px 22px;
+    background: #ffffff;
+    border: 1px solid #e9e9e9;
+    border-top: 4px solid #a71920;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgb(0 0 0 / 4%);
+    transition: box-shadow 0.25s ease;
+  }
+
+    .carousel-slide .career-card:hover {
+      box-shadow: 0 12px 28px rgb(0 0 0 / 9%);
+    }
+
+.career-card h3 {
+  width: 100%;
+  margin: 0 0 16px;
+  color: #a71920;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.career-description {
+  align-self: stretch;
+  flex-grow: 1;
+  width: 100%;
+  margin-bottom: 25px;
+  color: #000000;
+  font-size: 15px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+  .career-description p {
+    margin: 0 0 12px;
+  }
+
+  .career-description ul {
+    margin: 0;
+    padding-left: 22px;
+  }
+
+  .career-description li {
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+  }
+
+    .career-description li:last-child {
+      margin-bottom: 0;
+    }*/
+
+/* =========================================
+   CAROUSEL CONTROLS
+   ARROWS AT SIDES
+   ========================================= */
+
+/*.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  color: #ffffff;
+  background: #a71920;
+  border: 1px solid #a71920;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-arrow-prev {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.carousel-arrow-next {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  color: #ffffff;
+  background: #a71920;
+}
+
+.carousel-arrow:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}*/
+
+/* =========================================
+   SLIDE INDICATORS
+   ========================================= */
+
+/*.carousel-indicators {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-dot {
+  display: block;
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  padding: 0;
+  background: #cccccc;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+  .carousel-dot:hover {
+    background: #888888;
+  }
+
+  .carousel-dot.active {
+    background: #a71920;
+    transform: scale(1.3);
+  }
+
+.carousel-counter {
+  display: block;
+  width: 100%;
+  margin: 10px 0 0;
+  color: #777777;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}*/
+
+/* =========================================
+   KEYBOARD ACCESSIBILITY
+   ========================================= */
+
+/*.carousel-arrow:focus-visible,
+.carousel-dot:focus-visible,
+.career-link:focus-visible {
+  outline: 3px solid #333333;
+  outline-offset: 4px;
+}
+
+.btn-primary-custom {
+  background: #a71920;
+  border: 1px solid #a71920;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+  padding: 13px 23px;
+}
+
+  .btn-primary-custom:hover {
+    background: #86141a;
+    border-color: #86141a;
+    color: #fff;
+  }*/
+
+/* Careers */
+/*.section-label {
+  display: inline-block;
+  color: #a71920;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+
+.careers-section {
+  padding: 45px 0;
+  background: #f6f6f7;
+}
+
+.careers-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 45px;
+  background: #fff;
+  border-left: 5px solid #a71920;
+  border-radius: 5px;
+}
+
+  .careers-panel h2 {
+    font-size: clamp(25px, 3vw, 34px);
+  }
+
+  .careers-panel p {
+    color: #666;
+    margin-bottom: 0;
+  }*/
+
+/* Contact */
+/*.contact-section {
+  padding: 25px 0;
+  background: #fff;
+}*/
+
+/* =========================================
+   TABLET RESPONSIVE
+   KEEP THREE SLIDES VISIBLE
+   ========================================= */
+
+/*@media (max-width: 900px) {
+  .careers-container {
+    width: calc(100% - 36px);
+  }
+
+  .career-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+    .career-heading > p {
+      max-width: 600px;
+    }
+
+  .careers-carousel {
+    max-width: 100%;
+  }
+
+  .carousel-viewport {
+    grid-template-columns: 36px minmax(0, 1fr) 36px;
+    gap: 6px;
+  }
+
+  .carousel-slide {
+    flex-basis: 50%;
+  }
+
+    .carousel-slide .career-card {
+      min-height: 410px;
+      padding: 20px 15px;
+    }
+
+  .career-card h3 {
+    font-size: 18px;
+  }
+
+  .career-description {
+    font-size: 13px;
+  }
+
+  .careers-panel {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px;
+  }
+}*/
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+   KEEP THREE SLIDES VISIBLE
+   ========================================= */
+
+/*@media (max-width: 600px) {
+  .careers-container {
+    width: calc(100% - 24px);
+  }
+
+  .careers-hero {
+    padding: 65px 0;
+  }
+
+    .careers-hero h1 {
+      font-size: 36px;
+    }
+
+    .careers-hero p {
+      font-size: 16px;
+    }
+
+  .careers-intro {
+    padding: 55px 0 45px;
+  }
+
+    .careers-intro h2,
+    .career-heading h2 {
+      font-size: 29px;
+    }
+
+  .career-solutions {
+    padding: 45px 0 60px;
+  }
+
+  .careers-carousel {
+    max-width: 100%;
+  }
+
+  .carousel-viewport {
+    grid-template-columns: 28px minmax(0, 1fr) 28px;
+    gap: 3px;
+  }
+
+  .carousel-slide {
+    flex-basis: 100%;
+  }
+
+    .carousel-slide .career-card {
+      min-height: 380px;
+      padding: 14px 8px;
+    }
+
+  .career-card h3 {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .career-description {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+    .career-description ul {
+      padding-left: 16px;
+    }
+
+    .career-description li {
+      margin-bottom: 7px;
+    }
+
+  .carousel-controls {
+    margin-top: 14px;
+  }
+
+  .carousel-arrow {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .carousel-indicators {
+    gap: 8px;
+  }
+
+  .carousel-dot {
+    flex-basis: 8px;
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+  }
+
+  .carousel-counter {
+    font-size: 11px;
+  }
+}*/
+
+/* =========================================
+   REDUCED MOTION
+   ========================================= */
+
+/*@media (prefers-reduced-motion: reduce) {
+  .carousel-track,
+  .carousel-arrow,
+  .carousel-dot,
+  .career-link span {
+    transition: none;
+  }
+}*/
